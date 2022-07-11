@@ -1,5 +1,5 @@
 import { ResetCSS } from '@pancakeswap/uikit'
-import { BeobleProvider, Chat } from '@beoble/react'
+import { BeobleProvider, Chat, Profile } from '@beoble/react'
 import { Core } from '@beoble/js-sdk'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
@@ -73,7 +73,7 @@ function MyApp(props: AppProps) {
         <title>PancakeSwap</title>
       </Head>
       <Providers store={store}>
-        <BeobleProvider appId="2eef3eb4-db9a-46d2-b919-0a684cb87a50" Beoble={Beoble}>
+        <BeobleProvider Beoble={Beoble}>
           <Blocklist>
             <GlobalHooks />
             <ResetCSS />
@@ -118,6 +118,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const Layout = Component.Layout || Fragment
   return (
     <ProductionErrorBoundary>
+      <Profile detailElement="modal" />
       <Chat />
       <Menu>
         <Layout>

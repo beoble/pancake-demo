@@ -8,6 +8,7 @@ This project is Fork of [pancake-frontend](https://github.com/pancakeswap/pancak
 
 ```js
 "dependencies": {
+    // following packages added
     "@beoble/js-sdk": "./dist/packages/js-sdk",
     "@beoble/react": "./dist/packages/react",
     "@metamask/jazzicon": "^2.0.0",
@@ -20,6 +21,7 @@ This project is Fork of [pancake-frontend](https://github.com/pancakeswap/pancak
 ### src/pages/\_app.tsx
 
 ```js
+// describing changes to integrate beoble chat module
 import { Core } from '@beoble/js-sdk'
 import { BeobleProvider, Chat } from '@beoble/react'
 ...
