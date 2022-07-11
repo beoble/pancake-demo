@@ -37,6 +37,11 @@
     ]
   },
   "dependencies": {
+    "@beoble/js-sdk": "./dist/packages/js-sdk",
+    "@beoble/react": "./dist/packages/react",
+    "@metamask/jazzicon": "^2.0.0",
+    "react-icons": "^4.4.0",
+    "emoji-picker-react": "^3.5.1",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@blocto/blocto-connector": "^0.2.3",
     "@ethersproject/abi": "^5.5.0",

@@ -1,4 +1,6 @@
 import { ResetCSS } from '@pancakeswap/uikit'
+import { BeobleProvider, Chat } from '@beoble/react'
+import { Core } from '@beoble/js-sdk'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import BigNumber from 'bignumber.js'
@@ -25,6 +27,8 @@ import Providers from '../Providers'
 import GlobalStyle from '../style/Global'
 
 const EasterEgg = dynamic(() => import('components/EasterEgg'), { ssr: false })
+
+const Beoble = new Core({ appId: '2eef3eb4-db9a-46d2-b919-0a684cb87a50' })
 
 // This config is required for number formatting
 BigNumber.config({
@@ -69,16 +73,18 @@ function MyApp(props: AppProps) {
         <title>PancakeSwap</title>
       </Head>
       <Providers store={store}>
-        <Blocklist>
-          <GlobalHooks />
-          <ResetCSS />
-          <GlobalStyle />
-          <GlobalCheckClaimStatus excludeLocations={[]} />
-          <PersistGate loading={null} persistor={persistor}>
-            <Updaters />
-            <App {...props} />
-          </PersistGate>
-        </Blocklist>
+        <BeobleProvider appId="2eef3eb4-db9a-46d2-b919-0a684cb87a50" Beoble={Beoble}>
+          <Blocklist>
+            <GlobalHooks />
+            <ResetCSS />
+            <GlobalStyle />
+            <GlobalCheckClaimStatus excludeLocations={[]} />
+            <PersistGate loading={null} persistor={persistor}>
+              <Updaters />
+              <App {...props} />
+            </PersistGate>
+          </Blocklist>
+        </BeobleProvider>
       </Providers>
       <Script
         strategy="afterInteractive"
@@ -112,6 +118,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const Layout = Component.Layout || Fragment
   return (
     <ProductionErrorBoundary>
+      <Chat />
       <Menu>
         <Layout>
           <Component {...pageProps} />
