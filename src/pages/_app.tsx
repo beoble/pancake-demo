@@ -1,5 +1,5 @@
 import { ResetCSS } from '@pancakeswap/uikit'
-import { BeobleProvider, Chat, Profile } from '@beoble/react'
+import { BeobleProvider, Chat, Profile, useBeoble } from '@beoble/react'
 import { Core } from '@beoble/js-sdk'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
@@ -14,7 +14,7 @@ import useUserAgent from 'hooks/useUserAgent'
 import useThemeCookie from 'hooks/useThemeCookie'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { PersistGate } from 'redux-persist/integration/react'
 import { useStore, persistor } from 'state'
 import { usePollBlockNumber } from 'state/block/hooks'
@@ -116,6 +116,11 @@ const ProductionErrorBoundary = process.env.NODE_ENV === 'production' ? ErrorBou
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   // Use the layout defined at the page level, if available
   const Layout = Component.Layout || Fragment
+  const { setChain } = useBeoble()
+  useEffect(() => {
+    setChain('EVM')
+  }, [])
+
   return (
     <ProductionErrorBoundary>
       <Profile detailElement="modal" />
